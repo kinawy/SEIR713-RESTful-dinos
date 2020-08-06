@@ -24,4 +24,13 @@ app.get('/dinosaurs', (req, res)=>{
     res.render('dinosaurs/index', {myDinos: dinoData})
 })
 
+// show route (uses URL parameter "id")
+app.get('/dinosaurs/:id', (req, res)=>{
+    let dinosaurs = fs.readFileSync('./dinosaurs.json')
+    let dinoData = JSON.parse(dinosaurs)
+    // grab the id parameter from the url and convert to int (was string originally)
+    let dinoIndex = parseInt(req.params.id)
+    res.render('dinosaurs/show', {myDino: dinoData[dinoIndex]})
+})
+
 app.listen(8000)

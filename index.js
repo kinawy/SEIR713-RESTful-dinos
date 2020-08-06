@@ -24,6 +24,11 @@ app.get('/dinosaurs', (req, res)=>{
     res.render('dinosaurs/index', {myDinos: dinoData})
 })
 
+// get the new dino form
+app.get('/dinosaurs/new', (req,res)=>{
+    res.render('dinosaurs/new')
+})
+
 // show route (uses URL parameter "id")
 app.get('/dinosaurs/:id', (req, res)=>{
     let dinosaurs = fs.readFileSync('./dinosaurs.json')
@@ -32,5 +37,6 @@ app.get('/dinosaurs/:id', (req, res)=>{
     let dinoIndex = parseInt(req.params.id)
     res.render('dinosaurs/show', {myDino: dinoData[dinoIndex]})
 })
+
 
 app.listen(8000)
